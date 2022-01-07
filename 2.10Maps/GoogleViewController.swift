@@ -39,6 +39,7 @@ class GoogleViewController: UIViewController {
     }
     
     var delegate: BackButtonTap?
+    let locationManager = LocationManager()
     var currentLocation = CLLocationCoordinate2D()
     
     func buttonsViewSetings(_ bool: Bool){
@@ -66,13 +67,19 @@ class GoogleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.LCCheck(self)
         buttonsViewSetings(true)
         mapView.camera = GMSCameraPosition(latitude: 48.5154030, longitude: 32.2357250, zoom: 11)
-        mapView.isMyLocationEnabled = false
+        mapView.isMyLocationEnabled = true
 
-
-        // Do any additional setup after loading the view.
     }
 
 }
 
+extension GoogleViewController: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+        currentLocation = locValue
+    }
+}
