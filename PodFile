@@ -1,0 +1,6 @@
+platform :ios, '14.4'
+target '2.10Maps' do
+  use_modular_headers!
+  pod 'GoogleMaps'
+
+end
