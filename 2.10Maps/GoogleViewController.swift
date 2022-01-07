@@ -41,39 +41,70 @@ class GoogleViewController: UIViewController {
     var delegate: BackButtonTap?
     let locationManager = LocationManager()
     var currentLocation = CLLocationCoordinate2D()
+    let places = Places().places
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? PlacesTableViewController, segue.identifier == "goToPlaces"{
+            vc.delegate = self
+        }
+    }
+    
+    
+    func googlePlaces(places: [PointOfInterest]){
+        for i in places{
+            let marker = GMSMarker()
+            marker.title = i.title
+            marker.snippet = i.discipline
+            marker.position = i.coordinate
+            marker.map = mapView
+            marker.icon = i.glyphImage
+            marker.setIconSize(scaledToSize: .init(width: 30, height: 30))
+            marker.groundAnchor = CGPoint(x: 0.5, y: 1)
+            marker.appearAnimation = .pop
+        }
+    }
     
     func buttonsViewSetings(_ bool: Bool){
         minusButton.isHidden = bool
         plusButton.isHidden = bool
         locateButton.isHidden = bool
         backButton.isHidden = bool
-//        placesButton.isHidden = bool
+        placesButton.isHidden = bool
         if bool {
             plusButton.alpha = 0
             minusButton.alpha = 0
             locateButton.alpha = 0
             backButton.alpha = 0
-//            placesButton.alpha = 0
+            placesButton.alpha = 0
         }
         else {
             plusButton.alpha = 1
             minusButton.alpha = 1
             locateButton.alpha = 1
             backButton.alpha = 1
-//            placesButton.alpha = 1
+            placesButton.alpha = 1
         }
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         locationManager.LCCheck(self)
         buttonsViewSetings(true)
+        googlePlaces(places: places)
         mapView.camera = GMSCameraPosition(latitude: 48.5154030, longitude: 32.2357250, zoom: 11)
         mapView.isMyLocationEnabled = true
 
     }
 
+}
+extension GoogleViewController: GMSMapViewDelegate{
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        mapView.camera = GMSCameraPosition(target: marker.position, zoom: 15)
+        print(marker.title!)
+        return false
+    }
 }
 
 extension GoogleViewController: CLLocationManagerDelegate{
@@ -81,5 +112,22 @@ extension GoogleViewController: CLLocationManagerDelegate{
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         currentLocation = locValue
+    }
+}
+
+extension GoogleViewController: PlacesDelegate{
+    func placeIsTapped(place: PointOfInterest) {
+        mapView.camera = GMSCameraPosition(target: place.coordinate, zoom: 15)
+
+    }
+}
+
+extension GMSMarker {
+    func setIconSize(scaledToSize newSize: CGSize) {
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        icon?.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        icon = newImage
     }
 }

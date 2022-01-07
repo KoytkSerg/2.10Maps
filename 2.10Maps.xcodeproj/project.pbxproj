@@ -20,6 +20,8 @@
 		455892A12787223600B96E3E /* MKMapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455892A02787223500B96E3E /* MKMapExtension.swift */; };
 		45B1E09F278740FD0051693A /* GoogleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B1E09E278740FD0051693A /* GoogleViewController.swift */; };
 		45B1E0A327874DB90051693A /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B1E0A227874DB90051693A /* LocationManager.swift */; };
+		45B1E0A5278892D40051693A /* PlacesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B1E0A4278892D40051693A /* PlacesTableViewController.swift */; };
+		45B1E0A7278892FA0051693A /* PlacesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B1E0A6278892FA0051693A /* PlacesViewCell.swift */; };
 		F794AFFE6AE696FBEDACD77D /* libPods-2.10Maps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A96A2B9994AA274758BC7EF /* libPods-2.10Maps.a */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +42,8 @@
 		455892A02787223500B96E3E /* MKMapExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapExtension.swift; sourceTree = "<group>"; };
 		45B1E09E278740FD0051693A /* GoogleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleViewController.swift; sourceTree = "<group>"; };
 		45B1E0A227874DB90051693A /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		45B1E0A4278892D40051693A /* PlacesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesTableViewController.swift; sourceTree = "<group>"; };
+		45B1E0A6278892FA0051693A /* PlacesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesViewCell.swift; sourceTree = "<group>"; };
 		81FACFD1A25B92B74A876332 /* Pods-2.10Maps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-2.10Maps.debug.xcconfig"; path = "Target Support Files/Pods-2.10Maps/Pods-2.10Maps.debug.xcconfig"; sourceTree = "<group>"; };
 		E931A0D05948B1AA83E0A4C9 /* Pods-2.10Maps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-2.10Maps.release.xcconfig"; path = "Target Support Files/Pods-2.10Maps/Pods-2.10Maps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +95,7 @@
 				45589296278712DB00B96E3E /* AppleViewController.swift */,
 				45B1E09E278740FD0051693A /* GoogleViewController.swift */,
 				455892A227872CC400B96E3E /* AppleMaps */,
+				45B1E0A8278893020051693A /* Places Table */,
 				45589298278713A300B96E3E /* PointOfInterest.swift */,
 				45B1E0A227874DB90051693A /* LocationManager.swift */,
 				4558929A2787145900B96E3E /* Places.swift */,
@@ -110,6 +115,15 @@
 				455892A02787223500B96E3E /* MKMapExtension.swift */,
 			);
 			path = AppleMaps;
+			sourceTree = "<group>";
+		};
+		45B1E0A8278893020051693A /* Places Table */ = {
+			isa = PBXGroup;
+			children = (
+				45B1E0A4278892D40051693A /* PlacesTableViewController.swift */,
+				45B1E0A6278892FA0051693A /* PlacesViewCell.swift */,
+			);
+			path = "Places Table";
 			sourceTree = "<group>";
 		};
 		73420E99A3999F059E38CA24 /* Frameworks */ = {
@@ -237,8 +251,10 @@
 			files = (
 				451524BC27871050004CF328 /* ViewController.swift in Sources */,
 				45589297278712DB00B96E3E /* AppleViewController.swift in Sources */,
+				45B1E0A7278892FA0051693A /* PlacesViewCell.swift in Sources */,
 				45B1E0A327874DB90051693A /* LocationManager.swift in Sources */,
 				45589299278713A300B96E3E /* PointOfInterest.swift in Sources */,
+				45B1E0A5278892D40051693A /* PlacesTableViewController.swift in Sources */,
 				451524B827871050004CF328 /* AppDelegate.swift in Sources */,
 				455892A12787223600B96E3E /* MKMapExtension.swift in Sources */,
 				451524BA27871050004CF328 /* SceneDelegate.swift in Sources */,

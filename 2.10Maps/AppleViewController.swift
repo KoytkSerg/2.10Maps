@@ -15,6 +15,7 @@ protocol BackButtonTap{
 
 class AppleViewController: UIViewController {
 
+    @IBOutlet weak var placesButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
@@ -58,25 +59,31 @@ class AppleViewController: UIViewController {
     var currentLocation = CLLocation()
     
     func buttonsViewSetings(_ bool: Bool){
-//        heightConst.constant = UIScreen.main.bounds.width/6
+
         minusButton.isHidden = bool
         plusButton.isHidden = bool
         locateButton.isHidden = bool
         backButton.isHidden = bool
-//        placesButton.isHidden = bool
+        placesButton.isHidden = bool
         if bool {
             plusButton.alpha = 0
             minusButton.alpha = 0
             locateButton.alpha = 0
             backButton.alpha = 0
-//            placesButton.alpha = 0
+            placesButton.alpha = 0
         }
         else {
             plusButton.alpha = 1
             minusButton.alpha = 1
             locateButton.alpha = 1
             backButton.alpha = 1
-//            placesButton.alpha = 1
+            placesButton.alpha = 1
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? PlacesTableViewController, segue.identifier == "goToPlaces"{
+            vc.delegate = self
         }
     }
 
@@ -113,6 +120,7 @@ extension AppleViewController: MKMapViewDelegate{
         }
         let location = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         mapView.centerToLocation(location, regionRadius: 300)
+        print(place.title!)
     }
 }
 
@@ -121,5 +129,12 @@ extension AppleViewController: CLLocationManagerDelegate{
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
         currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
+    }
+}
+
+extension AppleViewController: PlacesDelegate{
+    func placeIsTapped(place: PointOfInterest) {
+        let location = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        mapView.centerToLocation(location, regionRadius: 300)
     }
 }

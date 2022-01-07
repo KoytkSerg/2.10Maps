@@ -35,7 +35,7 @@ class ViewController: UIViewController {
             gm.delegate = self
         }
     }
-    
+    // функции для тапа по картам
     @objc func appleMapHasTap(_ sender: UITapGestureRecognizer){
         openView.isHidden = true
         UIView.animate(withDuration: 0.5, delay: 0) {
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
         appleHeightConst.constant = UIScreen.main.bounds.height / 3
         
     }
-    
+    // создания тапа по картам
     func appleMapTap(){
         let appleTap = UITapGestureRecognizer(target: self, action: #selector(self.appleMapHasTap(_:)))
         appleMapView.addGestureRecognizer(appleTap)
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
 
 
 }
-
+// делегат для закрытия большой карты
 extension ViewController: BackButtonTap{
     func isTaped() {
         appleMap.buttonsViewSetings(true)
