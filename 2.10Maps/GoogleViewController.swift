@@ -7,7 +7,7 @@
 
 import UIKit
 import GoogleMaps
-import CoreLocation
+
 
 class GoogleViewController: UIViewController {
 
@@ -42,14 +42,14 @@ class GoogleViewController: UIViewController {
     let locationManager = LocationManager()
     var currentLocation = CLLocationCoordinate2D()
     let places = Places().places
-    
+    // подпись на делегат для действий с таблици с местами
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PlacesTableViewController, segue.identifier == "goToPlaces"{
             vc.delegate = self
         }
     }
     
-    
+//    функция для добавления маркеров на карту
     func googlePlaces(places: [PointOfInterest]){
         for i in places{
             let marker = GMSMarker()
@@ -63,7 +63,7 @@ class GoogleViewController: UIViewController {
             marker.appearAnimation = .pop
         }
     }
-    
+    //    анимированное ищезание или появления кнопок на карте при раскрытии или закрытии
     func buttonsViewSetings(_ bool: Bool){
         minusButton.isHidden = bool
         plusButton.isHidden = bool
@@ -121,7 +121,7 @@ extension GoogleViewController: PlacesDelegate{
 
     }
 }
-
+// уменшение маркера
 extension GMSMarker {
     func setIconSize(scaledToSize newSize: CGSize) {
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)

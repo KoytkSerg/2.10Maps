@@ -13,10 +13,7 @@ class LocationManager {
     let locationManager = CLLocationManager()
     
     func LCCheck(_ VC: CLLocationManagerDelegate){
-        // Ask for Authorisation from the User.
         self.locationManager.requestAlwaysAuthorization()
-
-        // For use in foreground
         self.locationManager.requestWhenInUseAuthorization()
 
         if CLLocationManager.locationServicesEnabled() {

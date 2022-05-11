@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     
     var appleMap = AppleViewController()
     var googleMap = GoogleViewController()
-    let locationManager = LocationManager()
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let am = segue.destination as? AppleViewController, segue.identifier == "aMap"{
@@ -87,6 +87,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         defaultLayoutSettings()
         appleMapTap()
         googleMapTap()

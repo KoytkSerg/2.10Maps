@@ -30,7 +30,7 @@ class PointOfInterest: NSObject, MKAnnotation{
 
       super.init()
   }
-    // go to maps
+    // переход в Карты
   var mapItem: MKMapItem? {
       guard let location = locationName else {
       return nil

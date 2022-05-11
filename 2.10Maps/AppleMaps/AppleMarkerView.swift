@@ -24,6 +24,12 @@ class PlacesMarkerView: MKMarkerAnnotationView {
         leftCalloutAccessoryView = infoImage
         glyphImage = place.glyphImage
         markerTintColor = place.markerTintColor
+        
+        let detailLabel = UILabel()
+        detailLabel.numberOfLines = 0
+        detailLabel.font = detailLabel.font.withSize(12)
+        detailLabel.text = place.discipline
+        detailCalloutAccessoryView = detailLabel
 
     }
   }

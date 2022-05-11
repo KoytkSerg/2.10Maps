@@ -7,7 +7,7 @@
 
 import UIKit
 import MapKit
-import CoreLocation
+
 
 protocol BackButtonTap{
     func isTaped()
@@ -57,7 +57,7 @@ class AppleViewController: UIViewController {
     var delegate: BackButtonTap?
     let locationManager = LocationManager()
     var currentLocation = CLLocation()
-    
+//    анимированное ищезание или появления кнопок на карте при раскрытии или закрытии
     func buttonsViewSetings(_ bool: Bool){
 
         minusButton.isHidden = bool
@@ -80,7 +80,7 @@ class AppleViewController: UIViewController {
             placesButton.alpha = 1
         }
     }
-    
+    // подпись на делегат для действий с таблици с местами
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? PlacesTableViewController, segue.identifier == "goToPlaces"{
             vc.delegate = self
@@ -123,7 +123,7 @@ extension AppleViewController: MKMapViewDelegate{
         print(place.title!)
     }
 }
-
+// получение геопозиции
 extension AppleViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
@@ -131,7 +131,7 @@ extension AppleViewController: CLLocationManagerDelegate{
         currentLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
     }
 }
-
+// центровка и приблежение к выбранному месту
 extension AppleViewController: PlacesDelegate{
     func placeIsTapped(place: PointOfInterest) {
         let location = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
